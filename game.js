@@ -307,7 +307,7 @@ function clickPower(){let m=100*prestigeMult();if(techOwned('laser'))m*=1.5;if(t
 function baseProd(w,b){
  // V2.5 : économie V2.3 inchangée partout sauf les 4 premiers bâtiments du premier secteur.
  if(w===0 && b<4){return [20,75,280,1050][b];}
- return 100*(1.1+.18*w)*Math.pow(3.2,w)*Math.pow(2,b)*Math.max(1,2-b*.08)*(w>=12?Math.pow(1.16,w-11):1);
+ return 1000*(1.1+.18*w)*Math.pow(3.2,w)*Math.pow(2,b)*Math.max(1,2-b*.08)*(w>=12?Math.pow(1.16,w-11):1);
 }
 function autoRate(){let r=0;WORLDS.forEach((_,w)=>BUILDING_ROLES.forEach((__,b)=>r+=(state.buildings[w+'-'+b]||0)*baseProd(w,b)*WORLDS[w][3]));return r*prestigeMult()*prodMult()*3*eventMult('prod')*eventMult('income')/3*75}
 function earn(x){if(!Number.isFinite(x)||x<=0)return;state.money+=x;state.runTotal+=x;state.lifetimeTotal+=x;state.xp+=Math.max(1,Math.floor(Math.log10(Math.max(10,x))+2));state.level=Math.floor(Math.sqrt(state.xp/80))+1}
