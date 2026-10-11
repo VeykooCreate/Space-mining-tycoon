@@ -1,4 +1,4 @@
-const CACHE = 'space-mining-tycoon-v22';
+const CACHE = 'space-mining-tycoon-v23';
 
 const CORE = [
   './',
