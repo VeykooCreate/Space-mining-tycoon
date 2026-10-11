@@ -88,13 +88,13 @@ const QUESTS=[
 function normalizedQuestLevel(slot){const savedLevel=Math.max(1,Math.floor(Number(slot?.level)||1));const claimed=Math.max(0,Math.floor(Number(slot?.completed)||0));return Math.min(100000,Math.max(savedLevel,claimed+1))}
 function questLevel(id){return normalizedQuestLevel(state.quests?.[id])}
 function questNeed(q,lv=questLevel(q[0])){
- return Math.min(Number.MAX_SAFE_INTEGER,Math.max(1,Math.ceil(q[4]*Math.pow(q[5],lv-1))));
+ return Math.min(Number.MAX_VALUE,Math.max(1,Math.ceil(q[4]*Math.pow(q[5],lv-1))));
 }
 function questReward(q,lv=questLevel(q[0])){
  const planet=Math.max(1,selectedWorld+1);
  const divisor=['investor','credits'].includes(q[0])?10:1;
  const calculated=Math.ceil(questNeed(q,lv)*0.11/divisor*Math.pow(1.35,lv-1)*Math.pow(1.18,planet-1));
- return Math.min(Number.MAX_SAFE_INTEGER,calculated,questNeed(q,lv));
+ return Math.min(Number.MAX_VALUE,calculated,questNeed(q,lv));
 }
 function questRawValue(q,world=selectedWorld){
  switch(q[3]){
@@ -296,7 +296,7 @@ function worldFactor(w){const p=Math.min(1,worldProgress(w)/(BUILDING_ROLES.leng
 function cost(w,b){
  const n=state.buildings[w+'-'+b]||0;
  // V2.5 : seuls les 4 premiers bâtiments du premier secteur ont un équilibrage spécial.
- if(w===0 && b<4){const bases=[1500,6000,24000,96000];return 30*Math.ceil(bases[b]*Math.pow(1.16,n)*eventMult('cost'));}
+ if(w===0 && b<4){const bases=[1500,6000,24000,96000];return 6*Math.ceil(bases[b]*Math.pow(1.16,n)*eventMult('cost'));}
  const planetInflation=Math.pow(worldFactor(w),1.15);
  return 6*Math.ceil((500*Math.pow(28,w)*Math.pow(5.5,b)*Math.pow(1.16,n))*planetInflation/5*eventMult('cost'));
 }
@@ -476,7 +476,24 @@ async function loadLeaderboard(force=false){
  try{const {data,error}=await sb.from('leaderboard').select('nickname,total,prestige,level,planet').order('total',{ascending:false}).order('prestige',{ascending:false}).order('level',{ascending:false}).limit(10);if(error)throw error;lastLeaderboard=Date.now();box.innerHTML=data?.length?data.map((player,index)=>{const planet=WORLDS[Math.max(0,Math.min(WORLDS.length-1,Math.floor(Number(player.planet||1))-1))][1];return `<div class="rank-row"><b>#${index+1}</b><span>${escapeHTML(player.nickname||'Mineur')}</span><strong>${fmt(Number(player.total||0))}</strong><small>P${player.prestige||0} · N${player.level||1} · ${escapeHTML(planet)}</small></div>`}).join(''):'<p class="hint">Aucun commandant classé pour le moment.</p>'}catch(error){box.innerHTML='<p class="hint">Classement momentanément indisponible.</p>';console.warn('Leaderboard',error)}finally{leaderboardBusy=false}
 }
 function escapeHTML(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))}
-async function logout(){if(!state.account)return;try{if(cloudDirty){const synced=await syncCloud(true);if(!synced){toast('Synchronisation impossible · tu restes connecté et ta partie est conservée.');return}}if(sb){const {error}=await sb.auth.signOut({scope:'local'});if(error)throw error}if(state.account){state.lastAccountUserId=state.account.userId;state.account=null;cloudDirty=false;save(false);render();toast('Déconnexion · progression conservée localement')}}catch(error){toast(authErrorMessage(error))}}
+async function logout(){
+ if(!state.account)return;
+ const account={...state.account};
+ let syncFailed=false;
+ if(cloudDirty){
+  try{
+   const session=await getCloudSession();
+   if(session?.user?.id===account.userId)syncFailed=!(await syncCloud(true));
+  }catch{syncFailed=true}
+ }
+ try{if(sb){const {error}=await sb.auth.signOut({scope:'local'});if(error)throw error}}
+ catch(error){console.warn('Local sign out',error)}
+ state.lastAccountUserId=account.userId||state.lastAccountUserId;
+ state.account=null;
+ save(false);
+ render();
+ toast(syncFailed?'Déconnecté · progression conservée sur cet appareil; synchronisation à reprendre à la prochaine connexion.':'Déconnexion · progression conservée localement');
+}
 function buyBuilding(b){const c=cost(selectedWorld,b);if(state.money<c){toast('Crédits insuffisants');return}spend(c);const k=selectedWorld+'-'+b;state.buildings[k]=(state.buildings[k]||0)+1;state.xp+=20;save();render()}
 function buyTech(id){let t=null;for(const br of BRANCH_ORDER){const found=BRANCHES[br].find(x=>x[0]===id);if(found){t=found;break}}if(!t||techOwned(id)||state.money<t[2])return;const br=BRANCH_ORDER.find(k=>BRANCHES[k].some(x=>x[0]===id));const arr=BRANCHES[br],idx=arr.findIndex(x=>x[0]===id);if(idx>0&&!techOwned(arr[idx-1][0])){toast('Technologie précédente requise');return}spend(t[2]);state.research[id]=true;state.xp+=500;save();toast('Technologie acquise');render()}
 function spawnClickFx(amount,critical=false){
