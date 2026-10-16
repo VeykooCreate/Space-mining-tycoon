@@ -7,17 +7,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Space Mining Tycoon — V4.7</title>
-  <link rel="icon" href="favicon.svg?v=4.7" type="image/svg+xml">
+  <title>Space Mining Tycoon — Halloween Edition</title>
+  <link rel="icon" href="favicon.svg?v=halloween4" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="style.css?v=4.7">
+  <link rel="stylesheet" href="style.css?v=halloween4">
 </head>
 <body>
   <div id="app">
     <header class="topbar">
       <button class="brand" data-nav="control">
         <span class="brand-mark">◉</span>
-        <span><b>SPACE MINING</b><small>TYCOON // V4.7</small></span>
+        <span><b>SPACE MINING</b><small>TYCOON // V5.7 HALLOWEEN V4</small></span>
       </button>
       <div class="top-stats">
         <span>CRÉDITS <b id="money">0</b></span>
@@ -38,6 +38,7 @@
           <div id="clickFx" class="click-fx" aria-hidden="true"></div>
           <div id="comboHud" class="combo-hud" hidden>COMBO ×<b id="comboValue">1</b></div>
           <button id="mineBtn" class="mine-button"><span>⛏</span><b>EXTRAIRE</b><small>+<span id="clickPower">0</span></small></button>
+          <button id="halloweenCandyBtn" class="halloween-candy-click" hidden><span>🍬</span><b>RÉCOLTER</b><small>+1 bonbon</small></button>
         </div>
 
         <div class="micro-upgrades" id="microUpgrades">
@@ -68,6 +69,8 @@
 
       <section class="screen" data-screen="sectors">
         <div class="screen-head"><div><small>CARTOGRAPHIE</small><h2>Carte galactique</h2></div><span id="sectorCount">1 / 32</span></div>
+        <div id="halloweenEventRoot" class="halloween-event-root" hidden></div>
+        <div class="galaxy-selector" id="galaxySelector"></div>
         <div class="galaxy-map" id="galaxyMap"></div>
         <div class="panel sector-detail" id="sectorDetail"></div>
       </section>
@@ -95,7 +98,7 @@
           <div class="prestige-ring"><b id="prestigeBig">P0</b><span>niveau</span></div>
           <p id="prestigeText">Développe ton empire avant de franchir le seuil d'ascension.</p>
           <div class="prestige-stats"><span>RUN <b id="runTotal">0</b></span><span>OBJECTIF <b id="prestigeTarget">0</b></span></div>
-          <button id="prestigeBtn" class="primary wide" disabled>ASCENSIONNER</button>
+          <div id="ascensionRequirement" class="ascension-requirements"></div><p id="ascensionReward" class="hint"></p><div id="ascensionUpgrades" class="ascension-upgrades"></div><button id="prestigeBtn" class="primary wide" disabled>ASCENSIONNER</button>
         </div>
       </section>
 
@@ -128,6 +131,23 @@
               <div class="sync-card"><span class="sync-icon">☁</span><div><strong id="syncCardTitle">Sauvegarde cloud</strong><p id="cloudStatus" aria-live="polite">Préparation de la synchronisation…</p><small id="syncLast">Dernière sauvegarde : en attente</small></div></div>
               <button id="forceSync" class="primary wide">SYNCHRONISER MA PARTIE</button>
               <button id="logoutAccount" class="secondary wide">SE DÉCONNECTER</button>
+              <section id="adminPanel" class="panel admin-panel" hidden>
+                <div class="panel-title"><span>🛡</span><b>CONSOLE ADMINISTRATEUR</b><span class="admin-tag">PRIVÉ</span></div>
+                <p class="hint">Compte autorisé : oj dshfihjgsdsdklfhsdjhf@gmail.com. Les actions modifient ta sauvegarde de jeu.</p>
+                <label class="field-label" for="adminAmount">Montant de crédits</label>
+                <input id="adminAmount" type="text" inputmode="decimal" value="1000000000" placeholder="Ex. 1e100">
+                <div class="admin-actions">
+                  <button class="primary" data-admin-action="add-money">+ Ajouter crédits</button>
+                  <button class="secondary" data-admin-action="remove-money">− Retirer crédits</button>
+                  <button class="secondary" data-admin-action="set-money">Définir le solde</button>
+                  <button class="secondary" data-admin-action="add-points">+ 100 points d'ascension</button>
+                  <button class="secondary" data-admin-action="add-prestige">+ 1 ascension</button>
+                  <button class="secondary" data-admin-action="unlock-galaxies">Débloquer les 3 galaxies</button>
+                  <button class="secondary" data-admin-action="unlock-planets">Débloquer toutes les planètes</button>
+                  <button class="secondary" data-admin-action="ten-buildings">10 de chaque bâtiment partout</button>
+                </div>
+                <p class="hint" id="adminStatus" aria-live="polite">Commandes disponibles après vérification du compte.</p>
+              </section>
             </div>
           </div>
           <div class="account-side">
@@ -145,6 +165,7 @@
       <button data-nav="tech"><span>✦</span><span class="nav-label">Tech</span><i id="navAlertTech" class="nav-alert" hidden></i></button>
       <button data-nav="missions"><span>☷</span><span class="nav-label">Missions</span><i id="navAlertMissions" class="nav-alert" hidden></i></button>
       <button data-nav="prestige"><span>♜</span><span class="nav-label">Ascension</span><i id="navAlertPrestige" class="nav-alert" hidden></i></button>
+      <button data-nav="account" id="adminNavButton" hidden><span>🛡</span><span class="nav-label">Admin</span></button>
     </nav>
   </div>
   <section id="accountReminder" class="account-reminder" hidden aria-labelledby="accountReminderTitle" role="dialog" aria-modal="true">
@@ -161,6 +182,6 @@
   </section>
   <div id="toast"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="game.js?v=4.8"></script>
+  <script src="game.js?v=halloween4"></script>
 </body>
 </html>

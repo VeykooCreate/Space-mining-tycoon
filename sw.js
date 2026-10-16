@@ -1,4 +1,4 @@
-const CACHE = 'space-mining-tycoon-v23';
+const CACHE = 'space-mining-tycoon-halloween-2026-v5';
 
 const CORE = [
   './',
@@ -6,7 +6,7 @@ const CORE = [
   './style.css',
   './game.js',
   './manifest.webmanifest',
-  './icon.svg'
+  './favicon.svg'
 ];
 
 self.addEventListener('install', event => {

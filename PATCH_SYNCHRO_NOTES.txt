@@ -1,0 +1,9 @@
+PATCH DE SYNCHRONISATION CLIENT — VERSION ADMIN
+
+Ce ZIP reprend les fichiers de AdminTestTycoon(1).zip et applique le patch à game.js.
+Modification : après chaque save(markCloud=true), si le compte est connecté, une synchronisation cloud est déclenchée après 150 ms (debounce).
+
+IMPORTANT : ce patch est compatible avec la version admin fournie car la fonction save() correspond exactement à celle attendue par le diff.
+Limite : il accélère l'envoi cloud mais ne garantit pas la prévention des doubles récompenses/achats simultanés. Cela exige une validation atomique/idempotente dans la fonction Supabase game-sync côté serveur.
+
+Tester d'abord en environnement admin, puis vérifier PC + téléphone, achat quasi simultané et double réclamation de quête. Conserver l'archive originale pour retour arrière.

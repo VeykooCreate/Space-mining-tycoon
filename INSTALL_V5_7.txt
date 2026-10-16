@@ -1,0 +1,12 @@
+SPACE MINING TYCOON V5.7 — GALAXIE DANS LE CLASSEMENT
+
+MODIFICATION
+Le classement mondial affiche maintenant le nom et l’icône de la galaxie de chaque joueur, en plus de sa planète, de son prestige et de son niveau. La galaxie est calculée à partir de la colonne `planet` déjà lue depuis la vue `leaderboard` (planète globale numérotée de 1 à 96). Aucun changement de schéma Supabase n’est nécessaire si `planet` contient bien le numéro global de planète comme dans la version précédente.
+
+INSTALLATION
+1. Fais une copie de sauvegarde du dépôt actuel.
+2. Remplace les fichiers du dépôt de test par ceux de cette archive.
+3. Attends la fin du déploiement GitHub Pages.
+4. Recharge le site avec Ctrl+F5. Sur mobile, ferme puis rouvre le site si l’ancien cache persiste.
+
+Vérifie l’affichage avec des comptes présents dans différentes galaxies. La syntaxe JavaScript a été vérifiée, mais cette archive n’a pas été testée sur le site déployé ni avec la base Supabase en direct.

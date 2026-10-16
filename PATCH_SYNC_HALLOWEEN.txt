@@ -1,0 +1,18 @@
+# AdminTestTycoon — correctif synchronisation + Halloween
+
+## Modifications
+- `game.js` : synchronisation cloud automatique déclenchée environ 1,2 seconde après une action qui sauvegarde l'état, au lieu d'attendre uniquement la boucle de synchronisation périodique.
+- Si une synchronisation est déjà en cours et que de nouveaux changements arrivent, une nouvelle synchronisation est planifiée après la fin de la requête.
+- Missions d'Halloween : la logique de niveau existe déjà dans cette version (`missionLevels`, objectif ×1,8 et récompense ×1,45 par niveau pour les missions quotidiennes répétables) et l'interface affiche `NIVEAU n`. Elle est conservée.
+- Bonbons de départ : attribution unique de 15 000 bonbons pour une sauvegarde Halloween neuve sans bâtiment ni progression. Cela suffit pour le premier bâtiment (coût initial 14 400). Les sauvegardes déjà progressées ne reçoivent pas ce cadeau.
+
+## Déploiement prudent
+1. Garde une copie de la version actuellement déployée.
+2. Déploie ce ZIP sur la branche admin/test.
+3. Connecte le même compte sur PC et téléphone.
+4. Achète un bâtiment sur le PC; vérifie que le téléphone reflète l'achat après quelques secondes.
+5. Réclame une quête sur un appareil et vérifie qu'elle est marquée réclamée sur l'autre.
+6. Vérifie la première mission d'Halloween et le premier bâtiment.
+
+## Limite importante
+Ce correctif client déclenche plus rapidement la synchronisation, mais ne remplace pas une validation atomique côté serveur. Si deux appareils effectuent exactement la même réclamation avant que l'un voie l'état de l'autre, l'absence totale de double récompense doit être garantie dans la fonction Supabase `game-sync` (et ses fonctions SQL/RPC), dont le code serveur n'est pas inclus dans ce ZIP.

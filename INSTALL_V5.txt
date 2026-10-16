@@ -1,0 +1,14 @@
+SPACE MINING TYCOON V5.5 — GALAXIES ET ASCENSIONS
+
+1. Fais une copie de sécurité du dépôt actuel.
+2. Teste cette version dans un dépôt GitHub Pages séparé.
+3. Envoie tous les fichiers à la racine du dépôt de test.
+4. Ouvre la page, vérifie la carte, les achats, l'ascension et le mode PWA.
+5. Ne remplace pas la version principale avant d'avoir testé la synchronisation Supabase avec un compte de test.
+
+La clé de sauvegarde locale est conservée pour permettre la migration des anciennes sauvegardes. Cette version n'a pas été testée contre ton projet Supabase distant.
+
+
+V5.5 : le bouton Admin apparaît dans la navigation après connexion vérifiée avec le compte autorisé. Le pseudo exact ADMIN est filtré du classement affiché par le client. Pour une exclusion garantie côté serveur, il faut aussi adapter la vue/table Supabase du classement.
+
+Version V5.6 : les branches technologiques et les catégories de missions sont repliables pour limiter le défilement sur téléphone.

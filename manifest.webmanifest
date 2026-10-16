@@ -1,11 +1,16 @@
 {
-  "name": "Space Mining Tycoon V4.7",
+  "name": "Space Mining Tycoon — Halloween Edition",
   "short_name": "Space Mining",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#05070d",
-  "theme_color": "#05070d",
+  "theme_color": "#120b12",
   "icons": [
-    {"src":"favicon.svg?v=4.7","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+    {
+      "src": "favicon.svg?v=5.0",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
   ]
 }
