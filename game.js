@@ -58,16 +58,16 @@ for(let g=1;g<3;g++)EXTRA_WORLDS[g-1].forEach((p,i)=>WORLDS.push([p[0],p[1],WORL
 // Halloween limited-time event: available through November 1, 2026 (French local time).
 const HALLOWEEN_END = Date.parse('2026-11-02T00:00:00+01:00');
 const HALLOWEEN_PLANETS = [
- {icon:'🎃',name:'Citrouille Nova',desc:'Un monde orange baigné de brume',scale:1.0,buildings:[['🍬','Confiserie lunaire',1,12],['🕯️','Mine à citrouilles',1,30],['🧙','Atelier de sorcière',1,80],['🕸️','Tisseur de sucre',1,210]]},
- {icon:'👻',name:'Brume des Fantômes',desc:'Des spectres récoltent des bonbons',scale:1.8,buildings:[['👻','Récolteur spectral',1,24],['🪦','Cimetière gourmand',1,60],['🦇','Nid de chauves-souris',1,160],['🔮','Cristalliseur d’ectoplasme',1,420]]},
- {icon:'🕷️',name:'Toile d’Obsidienne',desc:'Des araignées tissent du sucre noir',scale:3.2,buildings:[['🕷️','Tisseur arachnide',1,48],['🕸️','Filature de caramel',1,120],['🪲','Élevage de scarabées',1,320],['🕯️','Lanterne ensorcelée',1,850]]},
- {icon:'🧛',name:'Château de Minuit',desc:'Les vampires gardent les réserves',scale:5.5,buildings:[['🦇','Domaine des vampires',1,95],['🧛','Comptoir sanguisucre',1,240],['⚰️','Coffre funéraire',1,640],['🌙','Four lunaire',1,1700]]},
- {icon:'🧪',name:'Marais des Potions',desc:'Des élixirs transforment les friandises',scale:9,buildings:[['🧪','Distillerie de potions',1,180],['🍭','Cuve de sucettes',1,460],['🐸','Laboratoire des crapauds',1,1200],['☠️','Réacteur toxique',1,3200]]},
- {icon:'💀',name:'Catacombes Sucrées',desc:'Une ancienne civilisation de bonbons',scale:15,buildings:[['💀','Mine de sucre fossile',1,350],['🦴','Broyeur d’os en sucre',1,900],['⚱️','Crypte confiserie',1,2400],['🪬','Totem maudit',1,6500]]},
- {icon:'🧟',name:'Jardin des Revenants',desc:'Des cultures étranges poussent dans la nuit',scale:25,buildings:[['🧟','Ferme des revenants',1,700],['🌱','Serre citrouille',1,1800],['🪴','Jardin carnivore',1,5000],['🧬','Mutateur de friandises',1,13500]]},
- {icon:'🐈‍⬛',name:'Lune des Sorcières',desc:'Des familiers gardent les chaudrons',scale:42,buildings:[['🐈‍⬛','Sanctuaire des familiers',1,1400],['🧹','Usine de balais',1,3800],['🧙','Académie occulte',1,10500],['🌑','Collecteur d’ombre',1,28000]]},
- {icon:'🔥',name:'Fournaise des Bonbons',desc:'Une étoile forge des friandises explosives',scale:70,buildings:[['🔥','Four à caramel',1,3000],['💣','Fonderie de bonbons',1,8000],['🌋','Volcan de chocolat',1,22000],['⚡','Convertisseur d’énergie sucrée',1,60000]]},
- {icon:'👑',name:'Trône du Cauchemar',desc:'Le cœur de la galaxie d’Halloween',scale:120,buildings:[['👑','Palais du Roi Citrouille',1,7500],['🐉','Dragon confiseur',1,20000],['🌀','Portail des friandises',1,55000],['🌌','Noyau du cauchemar',1,150000]]}
+ {icon:'🎃',name:'Citrouille Nova',desc:'Un monde orange baigné de brume',scale:1.0,buildings:[['🍬','Confiserie lunaire',1,2],['🕯️','Mine à citrouilles',1,6],['🧙','Atelier de sorcière',1,16],['🕸️','Tisseur de sucre',1,42]]},
+ {icon:'👻',name:'Brume des Fantômes',desc:'Des spectres récoltent des bonbons',scale:1.8,buildings:[['👻','Récolteur spectral',1,5],['🪦','Cimetière gourmand',1,12],['🦇','Nid de chauves-souris',1,32],['🔮','Cristalliseur d’ectoplasme',1,84]]},
+ {icon:'🕷️',name:'Toile d’Obsidienne',desc:'Des araignées tissent du sucre noir',scale:3.2,buildings:[['🕷️','Tisseur arachnide',1,10],['🕸️','Filature de caramel',1,24],['🪲','Élevage de scarabées',1,64],['🕯️','Lanterne ensorcelée',1,170]]},
+ {icon:'🧛',name:'Château de Minuit',desc:'Les vampires gardent les réserves',scale:5.5,buildings:[['🦇','Domaine des vampires',1,19],['🧛','Comptoir sanguisucre',1,48],['⚰️','Coffre funéraire',1,128],['🌙','Four lunaire',1,340]]},
+ {icon:'🧪',name:'Marais des Potions',desc:'Des élixirs transforment les friandises',scale:9,buildings:[['🧪','Distillerie de potions',1,36],['🍭','Cuve de sucettes',1,92],['🐸','Laboratoire des crapauds',1,240],['☠️','Réacteur toxique',1,640]]},
+ {icon:'💀',name:'Catacombes Sucrées',desc:'Une ancienne civilisation de bonbons',scale:15,buildings:[['💀','Mine de sucre fossile',1,70],['🦴','Broyeur d’os en sucre',1,180],['⚱️','Crypte confiserie',1,480],['🪬','Totem maudit',1,1300]]},
+ {icon:'🧟',name:'Jardin des Revenants',desc:'Des cultures étranges poussent dans la nuit',scale:25,buildings:[['🧟','Ferme des revenants',1,140],['🌱','Serre citrouille',1,360],['🪴','Jardin carnivore',1,1000],['🧬','Mutateur de friandises',1,2700]]},
+ {icon:'🐈‍⬛',name:'Lune des Sorcières',desc:'Des familiers gardent les chaudrons',scale:42,buildings:[['🐈‍⬛','Sanctuaire des familiers',1,280],['🧹','Usine de balais',1,760],['🧙','Académie occulte',1,2100],['🌑','Collecteur d’ombre',1,5600]]},
+ {icon:'🔥',name:'Fournaise des Bonbons',desc:'Une étoile forge des friandises explosives',scale:70,buildings:[['🔥','Four à caramel',1,600],['💣','Fonderie de bonbons',1,1600],['🌋','Volcan de chocolat',1,4400],['⚡','Convertisseur d’énergie sucrée',1,12000]]},
+ {icon:'👑',name:'Trône du Cauchemar',desc:'Le cœur de la galaxie d’Halloween',scale:120,buildings:[['👑','Palais du Roi Citrouille',1,1500],['🐉','Dragon confiseur',1,4000],['🌀','Portail des friandises',1,11000],['🌌','Noyau du cauchemar',1,30000]]}
 ];
 const HALLOWEEN_BOOSTS = {
  candy10:{name:'Étincelle sucrée',icon:'🍭',desc:'+10 % de production pendant 15 min',cost:100000,duration:900000,mult:1.1},
@@ -436,7 +436,7 @@ function dismissAccountReminder(){accountReminderDismissed=true;closeAccountRemi
 
 function fresh(){
  const buildings={};WORLDS.forEach((_,w)=>BUILDING_ROLES.forEach((_,b)=>buildings[w+'-'+b]=0));
- return {money:0,runTotal:0,lifetimeTotal:0,prestige:0,crystals:0,ascensionPoints:0,galaxiesUnlocked:1,ascensionUpgrades:{},halloween:{candies:0,planet:0,buildings:{},boosts:{}},buildings,research:{},xp:0,level:1,clicks:0,spent:0,activeWorld:0,
+ return {money:0,runTotal:0,lifetimeTotal:0,prestige:0,crystals:0,ascensionPoints:0,galaxiesUnlocked:1,ascensionUpgrades:{},halloween:{candies:15000,totalCandiesEarned:15000,startingGift15kV2:true,planet:0,buildings:{},boosts:{}},buildings,research:{},xp:0,level:1,clicks:0,spent:0,activeWorld:0,
 daily:{key:dateKey(),claimed:[],base:{clicks:0,lifetime:0,spent:0,buildings:0}},
 weekly:{key:weekKey(),claimed:[],base:{clicks:0,lifetime:0,run:0,spent:0,buildings:0,tech:0,world:1}},
 campaignClaimed:[],
@@ -451,7 +451,7 @@ z.campaignClaimed=Array.isArray(z.campaignClaimed)?z.campaignClaimed:[];
 z.achievements=Array.isArray(z.achievements)?z.achievements:[];
 z.achievementClaimed=Array.isArray(z.achievementClaimed)?z.achievementClaimed:[...z.achievements];
 z.clickStreak=Number(z.clickStreak)||0;z.lastClickAt=Number(z.lastClickAt)||0;z.clickMilestones=Number(z.clickMilestones)||0;
-z.event=Object.assign({id:null,activeUntil:0,nextAt:0},z.event||{});z.halloween=Object.assign({candies:0,totalCandiesEarned:0,candiesClicked:0,buildingsPurchased:0,boostPurchases:0,claimedMissions:[],selected:false,planet:0,buildings:{},boosts:{}},z.halloween||{});
+z.event=Object.assign({id:null,activeUntil:0,nextAt:0},z.event||{});z.halloween=Object.assign({candies:0,totalCandiesEarned:0,candiesClicked:0,buildingsPurchased:0,boostPurchases:0,claimedMissions:[],selected:false,planet:0,buildings:{},boosts:{}},z.halloween||{});if(!z.halloween.startingGift15kV2){z.halloween.candies=Math.max(0,Number(z.halloween.candies)||0)+15000;z.halloween.totalCandiesEarned=Math.max(0,Number(z.halloween.totalCandiesEarned)||0)+15000;z.halloween.startingGift15kV2=true;}
 z.offlineLast=Number(z.offlineLast)||0;
 z.lastAt=Number(z.lastAt)||Date.now();
  z.activeWorld=Math.max(0,Math.min(WORLDS.length-1,Math.floor(Number(z.activeWorld)||0)));
