@@ -264,6 +264,11 @@ body.halloween-selected .hero-space:after{background:linear-gradient(115deg,tran
   }
 }
 
-/* Navigation basse : six onglets visibles, centrés */
-.bottom-nav{grid-template-columns:repeat(6,minmax(0,1fr))}
-@media (min-width:700px){.bottom-nav{display:flex;justify-content:center;gap:8px}.bottom-nav button{width:112px;flex:0 0 112px}}
+/* Correctif navigation mobile : six onglets centrés, sans colonne Admin vide */
+.bottom-nav{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;justify-content:stretch}
+.bottom-nav button[hidden],[hidden]#adminNavButton{display:none!important}
+@media (min-width:700px){
+  .bottom-nav{display:flex!important;justify-content:center;gap:8px}
+  .bottom-nav button{width:112px;flex:0 0 112px}
+  .bottom-nav button[hidden],[hidden]#adminNavButton{display:none!important}
+}
