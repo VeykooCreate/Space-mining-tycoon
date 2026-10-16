@@ -391,10 +391,20 @@ function claimOffline(){
  const now=Date.now(),last=Number(state.lastAt||now);
  const seconds=Math.min(offlineCap(),Math.max(0,(now-last)/1000));
  state.lastAt=now;
- if(seconds<30){state.offlineLast=0;return 0}
+ if(seconds<30){state.offlineLast=0;save(false);return 0}
  const gain=Math.max(0,autoRate()*seconds*.75);
- if(gain>0){earn(gain);state.offlineLast=gain}
- save();return gain;
+ let candyGain=0;
+ if(halloweenActive()){
+   halloweenEnsure();
+   candyGain=Math.max(0,halloweenRate()*seconds*.75);
+   if(candyGain>0){
+     state.halloween.candies=(Number(state.halloween.candies)||0)+candyGain;
+     state.halloween.totalCandiesEarned=(Number(state.halloween.totalCandiesEarned)||0)+candyGain;
+   }
+ }
+ if(gain>0){earn(gain);state.offlineLast=gain}else state.offlineLast=0;
+ save();
+ return gain+candyGain;
 }
 function achievementValue(a){
  switch(a[3]){
@@ -841,10 +851,10 @@ if(sb)sb.auth.onAuthStateChange((event,session)=>{
 });ensureQuests();const offlineGain=claimOffline();if(!state.event.nextAt)scheduleEvent();checkEvent();checkAchievements();render();setTimeout(openAccountReminder,1400);
 
 document.addEventListener('visibilitychange',()=>{
- if(document.hidden){state.lastAt=Date.now();save();if(state.account)syncCloud(true)}
- else{const gain=claimOffline();checkEvent();checkAchievements();render();if(gain>0)toast('🌙 Revenu hors-ligne : +'+fmt(gain))}
+ if(document.hidden){save();if(state.account)syncCloud(true)}
+ else{const gain=claimOffline();checkEvent();checkAchievements();render();if(gain>0)toast('🌙 Revenus hors-ligne récupérés : +'+fmt(gain)+' (crédits et bonbons si Halloween est actif)')}
 });
-window.addEventListener('pagehide',()=>{state.lastAt=Date.now();save();if(state.account)syncCloud(true)});
+window.addEventListener('pagehide',()=>{save();if(state.account)syncCloud(true)});
 
 
 /* V2.5 mobile: prevent accidental double-tap page zoom while preserving scrolling. */
