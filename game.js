@@ -436,7 +436,7 @@ function dismissAccountReminder(){accountReminderDismissed=true;closeAccountRemi
 
 function fresh(){
  const buildings={};WORLDS.forEach((_,w)=>BUILDING_ROLES.forEach((_,b)=>buildings[w+'-'+b]=0));
- return {money:0,runTotal:0,lifetimeTotal:0,prestige:0,crystals:0,ascensionPoints:0,galaxiesUnlocked:1,ascensionUpgrades:{},halloween:{candies:15000,planet:0,buildings:{},boosts:{}},buildings,research:{},xp:0,level:1,clicks:0,spent:0,activeWorld:0,
+ return {money:0,runTotal:0,lifetimeTotal:0,prestige:0,crystals:0,ascensionPoints:0,galaxiesUnlocked:1,ascensionUpgrades:{},halloween:{candies:15000,startingGiftGranted:true,planet:0,buildings:{},boosts:{}},buildings,research:{},xp:0,level:1,clicks:0,spent:0,activeWorld:0,
 daily:{key:dateKey(),claimed:[],base:{clicks:0,lifetime:0,spent:0,buildings:0}},
 weekly:{key:weekKey(),claimed:[],base:{clicks:0,lifetime:0,run:0,spent:0,buildings:0,tech:0,world:1}},
 campaignClaimed:[],
@@ -451,7 +451,7 @@ z.campaignClaimed=Array.isArray(z.campaignClaimed)?z.campaignClaimed:[];
 z.achievements=Array.isArray(z.achievements)?z.achievements:[];
 z.achievementClaimed=Array.isArray(z.achievementClaimed)?z.achievementClaimed:[...z.achievements];
 z.clickStreak=Number(z.clickStreak)||0;z.lastClickAt=Number(z.lastClickAt)||0;z.clickMilestones=Number(z.clickMilestones)||0;
-z.event=Object.assign({id:null,activeUntil:0,nextAt:0},z.event||{});z.halloween=Object.assign({candies:0,totalCandiesEarned:0,candiesClicked:0,buildingsPurchased:0,boostPurchases:0,claimedMissions:[],selected:false,planet:0,buildings:{},boosts:{}},z.halloween||{});
+z.event=Object.assign({id:null,activeUntil:0,nextAt:0},z.event||{});const savedHalloween=z.halloween&&typeof z.halloween==='object'?z.halloween:{};const startingGiftNotRecorded=!Object.prototype.hasOwnProperty.call(savedHalloween,'startingGiftGranted');z.halloween=Object.assign({candies:0,totalCandiesEarned:0,candiesClicked:0,buildingsPurchased:0,boostPurchases:0,claimedMissions:[],selected:false,planet:0,buildings:{},boosts:{}},savedHalloween);if(startingGiftNotRecorded){z.halloween.candies=Math.max(0,Number(z.halloween.candies)||0)+15000;z.halloween.startingGiftGranted=true;}
 z.offlineLast=Number(z.offlineLast)||0;
 z.lastAt=Number(z.lastAt)||Date.now();
  z.activeWorld=Math.max(0,Math.min(WORLDS.length-1,Math.floor(Number(z.activeWorld)||0)));
